@@ -42,7 +42,7 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            ./build/print_ip-0.0.${{ github.run_number }}-Linux.deb
+            ./build/otus_editor-0.0.${{ github.run_number }}-Linux.deb
 
   docs:
     runs-on: ubuntu-latest
