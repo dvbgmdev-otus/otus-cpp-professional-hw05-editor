@@ -260,14 +260,19 @@ set_clang_tidy_flags() {
 set_targets() {
     TARGETS=()
 
-    # Если файлы переданы аргументами — используем их
+    # Если цели переданы аргументами — используем файлы и рекурсивно обходим директории
     if [[ ${#TARGET_ARGS[@]} -gt 0 ]]; then
-        for file in "${TARGET_ARGS[@]}"; do
-            if [[ ! -f "$file" ]]; then
-                log_error "File not found: $file" "$LOG_INDENT"
+        for target in "${TARGET_ARGS[@]}"; do
+            if [[ -f "$target" ]]; then
+                TARGETS+=("$target")
+            elif [[ -d "$target" ]]; then
+                while IFS= read -r file; do
+                    TARGETS+=("$file")
+                done < <(find "$target" -type f -name '*.cpp' | sort)
+            else
+                log_error "Target not found: $target" "$LOG_INDENT"
                 exit 1
             fi
-            TARGETS+=("$file")
         done
     else
         # Иначе — анализируем все .cpp в src
