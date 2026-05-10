@@ -9,28 +9,11 @@ namespace model {
 
 class Rectangle final : public IShape {
 public:
-    Rectangle(ShapeId id, const Point& top_left, double width, double height)
-        : m_id(id),
-          m_top_left(top_left),
-          m_width(width),
-          m_height(height) {
-    }
-
-    ShapeId id() const override {
-        return m_id;
-    }
-
-    const Point& topLeft() const {
-        return m_top_left;
-    }
-
-    double width() const {
-        return m_width;
-    }
-
-    double height() const {
-        return m_height;
-    }
+    Rectangle(ShapeId id, const Point& top_left, double width, double height);
+    ShapeId id() const override;
+    const Point& topLeft() const;
+    double width() const;
+    double height() const;
 
 private:
     ShapeId m_id;

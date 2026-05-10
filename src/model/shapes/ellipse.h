@@ -9,28 +9,11 @@ namespace model {
 
 class Ellipse final : public IShape {
 public:
-    Ellipse(ShapeId id, const Point& center, double radius_x, double radius_y)
-        : m_id(id),
-          m_center(center),
-          m_radius_x(radius_x),
-          m_radius_y(radius_y) {
-    }
-
-    ShapeId id() const override {
-        return m_id;
-    }
-
-    const Point& center() const {
-        return m_center;
-    }
-
-    double radiusX() const {
-        return m_radius_x;
-    }
-
-    double radiusY() const {
-        return m_radius_y;
-    }
+    Ellipse(ShapeId id, const Point& center, double radius_x, double radius_y);
+    ShapeId id() const override;
+    const Point& center() const;
+    double radiusX() const;
+    double radiusY() const;
 
 private:
     ShapeId m_id;

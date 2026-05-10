@@ -9,23 +9,10 @@ namespace model {
 
 class Line final : public IShape {
 public:
-    Line(ShapeId id, const Point& start, const Point& end)
-        : m_id(id),
-          m_start(start),
-          m_end(end) {
-    }
-
-    ShapeId id() const override {
-        return m_id;
-    }
-
-    const Point& start() const {
-        return m_start;
-    }
-
-    const Point& end() const {
-        return m_end;
-    }
+    Line(ShapeId id, const Point& start, const Point& end);
+    ShapeId id() const override;
+    const Point& start() const;
+    const Point& end() const;
 
 private:
     ShapeId m_id;

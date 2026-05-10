@@ -32,11 +32,15 @@ if(1) # CORE LIBRARY BLOCK
     set(CORE_SRC ${CORE_NAME}_SRC)
 
     set(${CORE_SRC}
-        # ${SRC_DIR}/app.cpp
+        ${SRC_DIR}/model/shapes/ellipse.cpp
+        ${SRC_DIR}/model/shapes/line.cpp
+        ${SRC_DIR}/model/shapes/rectangle.cpp
     )
 
     set(COVERAGE_SRC
-        # ${SRC_DIR}/app.cpp
+        ${SRC_DIR}/model/shapes/ellipse.cpp
+        ${SRC_DIR}/model/shapes/line.cpp
+        ${SRC_DIR}/model/shapes/rectangle.cpp
     )
 
     if(${CORE_SRC})

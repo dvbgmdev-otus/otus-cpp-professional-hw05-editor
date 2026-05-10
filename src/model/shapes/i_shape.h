@@ -9,7 +9,6 @@ namespace model {
 class IShape {
 public:
     virtual ~IShape() = default;
-
     virtual ShapeId id() const = 0;
 };
 
