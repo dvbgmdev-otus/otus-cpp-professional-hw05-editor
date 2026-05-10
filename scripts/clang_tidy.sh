@@ -256,19 +256,24 @@ set_clang_tidy_flags() {
     )
 }
 
+# ---- Добавление .cpp файлов из директории ----
+append_cpp_targets_from_dir() {
+    local dir="$1"
+    while IFS= read -r file; do
+        TARGETS+=("$file")
+    done < <(find "$dir" -type f -name '*.cpp' | sort)
+}
+
 # ---- Определение целевых файлов для анализа ----
 set_targets() {
     TARGETS=()
-
     # Если цели переданы аргументами — используем файлы и рекурсивно обходим директории
     if [[ ${#TARGET_ARGS[@]} -gt 0 ]]; then
         for target in "${TARGET_ARGS[@]}"; do
             if [[ -f "$target" ]]; then
                 TARGETS+=("$target")
             elif [[ -d "$target" ]]; then
-                while IFS= read -r file; do
-                    TARGETS+=("$file")
-                done < <(find "$target" -type f -name '*.cpp' | sort)
+                append_cpp_targets_from_dir "$target"
             else
                 log_error "Target not found: $target" "$LOG_INDENT"
                 exit 1
@@ -276,9 +281,7 @@ set_targets() {
         done
     else
         # Иначе — анализируем все .cpp в src (SRC_DIR="src")
-        while IFS= read -r file; do
-            TARGETS+=("$file")
-        done < <(find "$SRC_DIR" -type f -name '*.cpp' | sort)
+        append_cpp_targets_from_dir "$SRC_DIR"
     fi
 
     if [[ ${#TARGETS[@]} -eq 0 ]]; then
@@ -287,6 +290,7 @@ set_targets() {
     fi
 }
 
+# ---- Запуск clang-tidy ----
 run_clang_tidy() {
     local cmd_str
     printf -v cmd_str '%q ' "$@"
@@ -304,6 +308,7 @@ run_clang_tidy() {
     return "${PIPESTATUS[0]}"
 }
 
+# ---- Запуск clang-tidy в нативном режиме то есть без контейнера ----
 run_clang_tidy_native() {
     log_stage "Clang-tidy (native)"
     run_clang_tidy \
