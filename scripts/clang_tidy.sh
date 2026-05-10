@@ -275,10 +275,10 @@ set_targets() {
             fi
         done
     else
-        # Иначе — анализируем все .cpp в src
+        # Иначе — анализируем все .cpp в src (SRC_DIR="src")
         while IFS= read -r file; do
             TARGETS+=("$file")
-        done < <(find src -type f -name '*.cpp' | sort)
+        done < <(find "$SRC_DIR" -type f -name '*.cpp' | sort)
     fi
 
     if [[ ${#TARGETS[@]} -eq 0 ]]; then
