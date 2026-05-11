@@ -4,9 +4,7 @@ namespace editor {
 namespace model {
 
 Line::Line(ShapeId id, const Point& start, const Point& end)
-    : m_id(id), m_start(start), m_end(end) {}
-
-ShapeId Line::id() const { return m_id; }
+    : BaseShape(id), m_start(start), m_end(end) {}
 
 const Point& Line::start() const { return m_start; }
 

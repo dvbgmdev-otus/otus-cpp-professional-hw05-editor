@@ -4,9 +4,7 @@ namespace editor {
 namespace model {
 
 Ellipse::Ellipse(ShapeId id, const Point& center, double radius_x, double radius_y)
-    : m_id(id), m_center(center), m_radius_x(radius_x), m_radius_y(radius_y) {}
-
-ShapeId Ellipse::id() const { return m_id; }
+    : BaseShape(id), m_center(center), m_radius_x(radius_x), m_radius_y(radius_y) {}
 
 const Point& Ellipse::center() const { return m_center; }
 
