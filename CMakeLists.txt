@@ -39,6 +39,7 @@ if(1) # CORE LIBRARY BLOCK
         ${SRC_DIR}/model/shapes/ellipse.cpp
         ${SRC_DIR}/model/shapes/line.cpp
         ${SRC_DIR}/model/shapes/rectangle.cpp
+        ${SRC_DIR}/view/console_document_view.cpp
     )
 
     set(COVERAGE_SRC
@@ -49,6 +50,7 @@ if(1) # CORE LIBRARY BLOCK
         ${SRC_DIR}/model/shapes/ellipse.cpp
         ${SRC_DIR}/model/shapes/line.cpp
         ${SRC_DIR}/model/shapes/rectangle.cpp
+        ${SRC_DIR}/view/console_document_view.cpp
     )
 
     if(${CORE_SRC})

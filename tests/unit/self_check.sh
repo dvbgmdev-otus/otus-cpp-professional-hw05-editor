@@ -8,7 +8,7 @@ source "$SCRIPT_DIR/../../scripts/lib/config.sh"
 # shellcheck disable=SC1091
 source "$LIB_DIR/logging.sh"
 
-BINARY="$BIN_DIR/otus_editor"
+BINARY="${1:-$BIN_DIR/otus_editor}"
 
 check_output() {
     local name="$1"
@@ -36,7 +36,7 @@ main() {
     output="$("$BINARY")"
 
     local expected
-    expected="Application started"
+    expected=$'Application started\nDocument shapes: 2'
 
     check_output "full program output" "$expected" "$output"
 

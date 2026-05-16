@@ -1,6 +1,7 @@
 #include "controller/editor_controller.h"
 #include "debug_log.h"
 #include "io/file_document_io.h"
+#include "view/console_document_view.h"
 
 #include <string>
 
@@ -56,6 +57,10 @@ void onDeleteShape(editor::controller::EditorController& controller, editor::mod
     controller.removeShape(id);
 }
 
+void onRenderDocument(const editor::controller::EditorController& controller, const editor::view::IDocumentView& view) {
+    view.render(controller.document());
+}
+
 }  // namespace
 
 int main(int argc, char* argv[]) {
@@ -68,6 +73,7 @@ int main(int argc, char* argv[]) {
     const auto output_path = makeApplicationFilePath(application_directory, "output.editor");
 
     editor::io::FileDocumentIO document_io;
+    editor::view::ConsoleDocumentView document_view;
     editor::controller::EditorController controller(document_io);
 
     onNewDocument(controller);
@@ -76,6 +82,7 @@ int main(int argc, char* argv[]) {
     onCreateRectangle(controller);
     onCreateEllipse(controller);
     onDeleteShape(controller, 2);
+    onRenderDocument(controller, document_view);
     onExportDocument(controller, output_path);
 
     return 0;
