@@ -5,7 +5,7 @@
 namespace editor {
 namespace model {
 
-Rectangle::Rectangle(ShapeId id, const Point& top_left, double width, double height)
+Rectangle::Rectangle(ShapeId id, const Point& top_left, double width, double height)  // NOLINT(bugprone-easily-swappable-parameters)
     : BaseShape(id), m_top_left(top_left), m_width(width), m_height(height) {}
 
 void Rectangle::accept(IShapeVisitor& visitor) const {

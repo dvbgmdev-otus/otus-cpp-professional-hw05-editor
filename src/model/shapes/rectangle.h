@@ -9,7 +9,7 @@ namespace model {
 
 class Rectangle final : public BaseShape {
 public:
-    Rectangle(ShapeId id, const Point& top_left, double width, double height);
+    Rectangle(ShapeId id, const Point& top_left, double width, double height);  // NOLINT(bugprone-easily-swappable-parameters)
 
     void accept(IShapeVisitor& visitor) const override;
 
