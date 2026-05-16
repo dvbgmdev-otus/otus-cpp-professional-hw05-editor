@@ -6,10 +6,18 @@
 namespace editor {
 namespace view {
 
+/**
+ * @brief Интерфейс представления документа.
+ * @ingroup view_group
+ */
 class IDocumentView {
 public:
     virtual ~IDocumentView() = default;
 
+    /**
+     * @brief Отображает состояние документа.
+     * @param document Документ для отображения.
+     */
     virtual void render(const model::Document& document) const = 0;
 };
 

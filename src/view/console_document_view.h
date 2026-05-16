@@ -6,8 +6,16 @@
 namespace editor {
 namespace view {
 
+/**
+ * @brief Консольное представление документа.
+ * @ingroup view_group
+ */
 class ConsoleDocumentView final : public IDocumentView {
 public:
+    /**
+     * @brief Выводит краткое состояние документа в стандартный вывод.
+     * @param document Документ для отображения.
+     */
     void render(const model::Document& document) const override;
 };
 
