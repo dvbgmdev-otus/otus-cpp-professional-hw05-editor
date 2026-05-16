@@ -1,0 +1,28 @@
+/** @file namespaces.dox
+ *  @brief Документация пространств имён проекта.
+ */
+
+/**
+ * @namespace editor
+ * @brief Корневое пространство имён проекта otus_editor.
+ */
+
+/**
+ * @namespace editor::model
+ * @brief Модель документа и графических примитивов.
+ */
+
+/**
+ * @namespace editor::controller
+ * @brief Контроллеры пользовательских сценариев редактора.
+ */
+
+/**
+ * @namespace editor::io
+ * @brief Импорт и экспорт документов.
+ */
+
+/**
+ * @namespace editor::view
+ * @brief Представления документа.
+ */
