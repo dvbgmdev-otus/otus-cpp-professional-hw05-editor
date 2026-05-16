@@ -57,6 +57,10 @@ add_unit_test(document_io_test
     ${UNIT_TEST_DIR}/document_io_test.cpp
 )
 
+add_unit_test(editor_controller_test
+    ${UNIT_TEST_DIR}/editor_controller_test.cpp
+)
+
 add_test(
     NAME self_check
     COMMAND ${UNIT_TEST_DIR}/self_check.sh $<TARGET_FILE:${PROJECT_NAME}>
