@@ -9,6 +9,8 @@ source "$SCRIPT_DIR/../../scripts/lib/config.sh"
 source "$LIB_DIR/logging.sh"
 
 BINARY="${1:-$BIN_DIR/otus_editor}"
+BINARY_DIR="$(cd "$(dirname "$BINARY")" && pwd -P)"
+OUTPUT_DOCUMENT="$BINARY_DIR/output.editor"
 
 check_output() {
     local name="$1"
@@ -32,6 +34,8 @@ main() {
         exit 1
     fi
 
+    rm -f "$OUTPUT_DOCUMENT"
+
     local output
     output="$("$BINARY")"
 
@@ -39,6 +43,14 @@ main() {
     expected=$'Application started\nDocument shapes: 2'
 
     check_output "full program output" "$expected" "$output"
+
+    local expected_document
+    expected_document=$'line 0 0 0 10 10\nrectangle 1 0 0 100 50'
+
+    local actual_document
+    actual_document="$(cat "$OUTPUT_DOCUMENT")"
+
+    check_output "exported document" "$expected_document" "$actual_document"
 
     log_ok "Self-check passed"
 }

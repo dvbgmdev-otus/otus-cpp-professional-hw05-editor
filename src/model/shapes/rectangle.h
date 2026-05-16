@@ -10,6 +10,9 @@ namespace model {
 class Rectangle final : public BaseShape {
 public:
     Rectangle(ShapeId id, const Point& top_left, double width, double height);
+
+    void accept(IShapeVisitor& visitor) const override;
+
     const Point& topLeft() const;
     double width() const;
     double height() const;

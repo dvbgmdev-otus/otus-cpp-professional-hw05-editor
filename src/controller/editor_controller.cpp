@@ -19,7 +19,7 @@ void EditorController::createNewDocument() {
 bool EditorController::importDocument(const std::string& path) {
     const auto result = m_document_io.importDocument(path, m_document);
     if (result) {
-        m_next_shape_id = 0;
+        m_next_shape_id = m_document.nextAvailableShapeId();
     }
     return result;
 }

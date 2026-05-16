@@ -34,6 +34,18 @@ bool Document::empty() const { return m_shapes.empty(); }
 
 std::size_t Document::shapeCount() const { return m_shapes.size(); }
 
+ShapeId Document::nextAvailableShapeId() const {
+    if (m_shapes.empty()) {
+        return 0;
+    }
+
+    const auto it = std::max_element(m_shapes.begin(), m_shapes.end(), [](const ShapePtr& left, const ShapePtr& right) {
+        return left->id() < right->id();
+    });
+
+    return (*it)->id() + 1;
+}
+
 bool Document::containsShape(ShapeId id) const {
     return std::any_of(m_shapes.begin(), m_shapes.end(), [id](const ShapePtr& shape) {
         return shape->id() == id;

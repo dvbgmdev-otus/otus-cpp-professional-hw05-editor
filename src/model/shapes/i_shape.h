@@ -6,10 +6,14 @@
 namespace editor {
 namespace model {
 
+class IShapeVisitor;
+
 class IShape {
 public:
     virtual ~IShape() = default;
+
     virtual ShapeId id() const = 0;
+    virtual void accept(IShapeVisitor& visitor) const = 0;
 };
 
 }  // namespace model

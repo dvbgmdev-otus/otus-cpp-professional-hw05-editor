@@ -10,6 +10,9 @@ namespace model {
 class Ellipse final : public BaseShape {
 public:
     Ellipse(ShapeId id, const Point& center, double radius_x, double radius_y);
+
+    void accept(IShapeVisitor& visitor) const override;
+
     const Point& center() const;
     double radiusX() const;
     double radiusY() const;

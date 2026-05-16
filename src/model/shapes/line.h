@@ -10,6 +10,9 @@ namespace model {
 class Line final : public BaseShape {
 public:
     Line(ShapeId id, const Point& start, const Point& end);
+
+    void accept(IShapeVisitor& visitor) const override;
+
     const Point& start() const;
     const Point& end() const;
 

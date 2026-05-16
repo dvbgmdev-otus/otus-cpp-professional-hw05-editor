@@ -21,6 +21,7 @@ public:
     const Shapes& shapes() const;
     bool empty() const;
     std::size_t shapeCount() const;
+    ShapeId nextAvailableShapeId() const;
 
 private:
     bool containsShape(ShapeId id) const;
