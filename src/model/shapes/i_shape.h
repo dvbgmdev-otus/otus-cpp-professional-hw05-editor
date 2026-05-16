@@ -8,11 +8,24 @@ namespace model {
 
 class IShapeVisitor;
 
+/**
+ * @brief Общий интерфейс графического примитива.
+ * @ingroup shapes_group
+ */
 class IShape {
 public:
     virtual ~IShape() = default;
 
+    /**
+     * @brief Возвращает идентификатор примитива.
+     * @return Идентификатор примитива внутри документа.
+     */
     virtual ShapeId id() const = 0;
+
+    /**
+     * @brief Передает примитив visitor-объекту.
+     * @param visitor Обработчик конкретного типа примитива.
+     */
     virtual void accept(IShapeVisitor& visitor) const = 0;
 };
 

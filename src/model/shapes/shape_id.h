@@ -6,6 +6,10 @@
 namespace editor {
 namespace model {
 
+/**
+ * @brief Уникальный идентификатор графического примитива в документе.
+ * @ingroup shapes_group
+ */
 using ShapeId = std::size_t;
 
 }  // namespace model

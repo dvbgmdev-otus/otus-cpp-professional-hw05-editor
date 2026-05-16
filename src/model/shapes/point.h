@@ -4,8 +4,14 @@
 namespace editor {
 namespace model {
 
+/**
+ * @brief Точка на двумерной плоскости.
+ * @ingroup shapes_group
+ */
 struct Point {
+    /// Координата по горизонтальной оси.
     double x;
+    /// Координата по вертикальной оси.
     double y;
 };
 

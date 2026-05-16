@@ -8,12 +8,30 @@ class Ellipse;
 class Line;
 class Rectangle;
 
+/**
+ * @brief Интерфейс обработки конкретных типов графических примитивов.
+ * @ingroup shapes_group
+ */
 class IShapeVisitor {
 public:
     virtual ~IShapeVisitor() = default;
 
+    /**
+     * @brief Обрабатывает линию.
+     * @param line Линия для обработки.
+     */
     virtual void visit(const Line& line) = 0;
+
+    /**
+     * @brief Обрабатывает прямоугольник.
+     * @param rectangle Прямоугольник для обработки.
+     */
     virtual void visit(const Rectangle& rectangle) = 0;
+
+    /**
+     * @brief Обрабатывает эллипс.
+     * @param ellipse Эллипс для обработки.
+     */
     virtual void visit(const Ellipse& ellipse) = 0;
 };
 
