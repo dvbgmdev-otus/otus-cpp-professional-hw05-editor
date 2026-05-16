@@ -33,6 +33,7 @@ if(1) # CORE LIBRARY BLOCK
 
     set(${CORE_SRC}
         ${SRC_DIR}/controller/editor_controller.cpp
+        ${SRC_DIR}/io/file_document_io.cpp
         ${SRC_DIR}/model/document.cpp
         ${SRC_DIR}/model/shapes/base_shape.cpp
         ${SRC_DIR}/model/shapes/ellipse.cpp
@@ -42,6 +43,7 @@ if(1) # CORE LIBRARY BLOCK
 
     set(COVERAGE_SRC
         ${SRC_DIR}/controller/editor_controller.cpp
+        ${SRC_DIR}/io/file_document_io.cpp
         ${SRC_DIR}/model/document.cpp
         ${SRC_DIR}/model/shapes/base_shape.cpp
         ${SRC_DIR}/model/shapes/ellipse.cpp

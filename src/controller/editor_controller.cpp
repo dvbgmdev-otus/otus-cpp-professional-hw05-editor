@@ -9,11 +9,23 @@
 namespace editor {
 namespace controller {
 
-EditorController::EditorController() : m_next_shape_id(0) {}
+EditorController::EditorController(io::IDocumentIO& document_io) : m_document_io(document_io), m_next_shape_id(0) {}
 
 void EditorController::createNewDocument() {
     m_document = model::Document();
     m_next_shape_id = 0;
+}
+
+bool EditorController::importDocument(const std::string& path) {
+    const auto result = m_document_io.importDocument(path, m_document);
+    if (result) {
+        m_next_shape_id = 0;
+    }
+    return result;
+}
+
+bool EditorController::exportDocument(const std::string& path) const {
+    return m_document_io.exportDocument(m_document, path);
 }
 
 model::ShapeId EditorController::createLine(const model::Point& start, const model::Point& end) {

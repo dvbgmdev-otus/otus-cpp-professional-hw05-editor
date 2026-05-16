@@ -1,10 +1,36 @@
 #include "controller/editor_controller.h"
 #include "debug_log.h"
+#include "io/file_document_io.h"
+
+#include <string>
 
 namespace {
 
+std::string getApplicationDirectory(const char* application_path) {
+    const std::string path(application_path ? application_path : "");
+    const auto separator_pos = path.find_last_of("/\\");
+
+    if (separator_pos == std::string::npos) {
+        return ".";
+    }
+
+    return path.substr(0, separator_pos);
+}
+
+std::string makeApplicationFilePath(const std::string& application_directory, const std::string& file_name) {
+    return application_directory + "/" + file_name;
+}
+
 void onNewDocument(editor::controller::EditorController& controller) {
     controller.createNewDocument();
+}
+
+void onImportDocument(editor::controller::EditorController& controller, const std::string& path) {
+    controller.importDocument(path);
+}
+
+void onExportDocument(editor::controller::EditorController& controller, const std::string& path) {
+    controller.exportDocument(path);
 }
 
 void onCreateLine(editor::controller::EditorController& controller) {
@@ -32,16 +58,25 @@ void onDeleteShape(editor::controller::EditorController& controller, editor::mod
 
 }  // namespace
 
-int main() {
+int main(int argc, char* argv[]) {
     DEBUG_LOG("Application started");
 
-    editor::controller::EditorController controller;
+    static_cast<void>(argc);
+
+    const auto application_directory = getApplicationDirectory(argv[0]);
+    const auto input_path = makeApplicationFilePath(application_directory, "input.editor");
+    const auto output_path = makeApplicationFilePath(application_directory, "output.editor");
+
+    editor::io::FileDocumentIO document_io;
+    editor::controller::EditorController controller(document_io);
 
     onNewDocument(controller);
+    onImportDocument(controller, input_path);
     onCreateLine(controller);
     onCreateRectangle(controller);
     onCreateEllipse(controller);
     onDeleteShape(controller, 2);
+    onExportDocument(controller, output_path);
 
     return 0;
 }
